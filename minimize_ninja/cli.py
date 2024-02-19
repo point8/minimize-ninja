@@ -10,20 +10,11 @@ from rich.console import Console
 from rich.panel import Panel
 from tqdm import tqdm
 
-from minimize_ninja import (
-    ImageFile,
-    KeynoteFile,
-    Stopwatch,
-    TiffyYaml,
-    configure_logger,
-    get_logger,
-    read_config,
-)
+from minimize_ninja.common import configure_logger, get_logger, read_config
+from minimize_ninja.keynote import KeynoteFile, TiffyYaml
 
 
-@click.group(
-    help=f"MinimizeNinja version 0.0.2"
-)
+@click.group(help=f"MinimizeNinja version 0.0.2")
 @click.option("-v", "--verbose", "verbosity", help="Increase verbosity", count=True)
 @click.option("--log-file", "log_file", help="Log file to sent all output to")
 # @click.version_option(__version__)
