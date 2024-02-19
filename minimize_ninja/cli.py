@@ -88,9 +88,6 @@ def slim(
     logger = get_logger()
     console = resources["console"]
     path_packed = Path(keynote_file)
-    # path_unpacked = Path.cwd()
-    # filename_repacked = str(path_packed.stem) + '_tiffy.key'
-    # path_repacked = Path.cwd() / filename_repacked
 
     kf = KeynoteFile(resources, path_keynote=path_packed)
 
@@ -114,9 +111,6 @@ def slim(
             png_convert = True
             export_pdf = True
 
-    # while path_unpacked.exists():
-    #     path_unpacked = Path.cwd() / str(uuid.uuid4())[0:8]
-
     if resize_factor < 2.0:
         console.print()
         logger.warning(
@@ -139,31 +133,13 @@ def slim(
         )
         console.print()
 
-    # logger.info(f'Unpacking Keynote file {str(path_packed)}…')
-    # console.print()
-    # process(str(path_packed), str(path_unpacked), replacements=[])
     kf.unpack()
     console.print()
 
     metadata = kf.metadata
 
-    # path_index = path_unpacked / 'Index'
-    # path_metadata = path_index / 'Metadata.iwa.yaml'
-    # path_data = path_unpacked / 'Data'
-
-    # metadata = TiffyYaml(path_metadata)
-
-    # images_dict = {}
     logger.debug(f"Searching images in Metadata.iwa.yaml…")
     images_dict = kf.images_dict
-    # for chunk in metadata.yaml['chunks']:
-    #     for archive in chunk['archives']:
-    #         for object in archive['objects']:
-    #             for data in object.get('datas', []):
-    #                 if data['fileName'] != '':
-    #                     image = ImageFile(data, path_data, resources)
-    #                     # images.append(image)
-    #                     images_dict[image.identifier] = image
     logger.debug(f"…done! Found {len(images_dict.keys())} image files.")
 
     tiffies = [
@@ -264,7 +240,7 @@ def slim(
                                     yaml_file, object
                                 )
 
-    for id, image in tqdm(images_dict.items()):
+    for _, image in tqdm(images_dict.items()):
         image.resize(max_ratio_factor=resize_factor)
 
     sizes_converted = sum([image.size_converted for id, image in images_dict.items()])
@@ -286,10 +262,8 @@ def slim(
         f"compression)…"
     )
 
-    # sw = Stopwatch()
-    for id, image in tqdm(images_dict.items()):
+    for _, image in tqdm(images_dict.items()):
         image.optimize(jpeg_compression=jpeg_compression)
-    # sw.lap()
 
     sizes_resized = sum([image.size_resized for id, image in images_dict.items()])
     sizes_optimized = sum([image.size_optimized for id, image in images_dict.items()])
@@ -304,9 +278,6 @@ def slim(
     )
 
     console.print()
-    # logger.info(f'Re-packing Keynote file {path_repacked.name}…')
-    # console.print()
-    # process(str(path_unpacked), str(path_repacked), replacements=[])
     kf.repack()
     console.print()
 
