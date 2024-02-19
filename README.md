@@ -2,6 +2,8 @@
 
 MinimizeNinja. Compress Apple Keynote presentations files like a 🥷
 
+[**Try out!**](https://minimize.ninja/)
+
 ## Abstract
 
 We developed MinimizeNinja out of necessity, because Keynote does not allow creating proper-looking yet reasonably sized PDF files. For certain Keynote files, the resulting PDFs are either too large or they look shitty. You can even get the worst of both and end up with shitty-looking _and_ large files. 🎉
