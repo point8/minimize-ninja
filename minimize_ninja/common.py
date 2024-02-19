@@ -58,17 +58,17 @@ class Stopwatch(object):
 def read_config():
     logger = get_logger()
 
-    # rcfile = os.path.expanduser('~/.misstiffyrc.yaml')
+    # rcfile = os.path.expanduser('~/.minimizeninjarc.yaml')
     resources = {}
 
     # if os.path.isfile(rcfile):
     #     with open(rcfile) as file:
     #         resources = yaml.safe_load(file)
     # else:
-    #     logger.error('Cannot load settings from ~/.misstiffyrc.yaml. '
+    #     logger.error('Cannot load settings from ~/.minimizeninjarc.yaml. '
     #                  'Exiting.')
     #     raise FileNotFoundError('Cannot load settings from '
-    #                             '~/.misstiffyrc.yaml. Exiting.')
+    #                             '~/.minimizeninjarc.yaml. Exiting.')
 
     console = Console(record=True)
     resources['logger'] = logger
