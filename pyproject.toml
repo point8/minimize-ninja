@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+homepage = "https://github.com/point8/minimize-ninja"
+documentation = "https://github.com/point8/minimize-ninja"
+repository = "https://github.com/point8/minimize-ninja"
+
+[project]
+name="minimize-ninja"
+description="MinimizeNinja. Compress Keynote presentation files like a ninja"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3 :: Only"
+]
+version = "0.0.2"
+# dynamic = ["version"]
+dependencies = [
+    "GitPython", "pyyaml", "tqdm", "wand",
+    "pendulum", "click", "rich", "keynote_parser",
+    "humanize", "pyoxipng", "applescript",
+]
+
+[tool.setuptools]
+packages = [
+    "minimize_ninja"
+]
+
+[project.scripts]
+mn = "minimize_ninja.cli:main"
