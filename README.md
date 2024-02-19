@@ -31,6 +31,12 @@ You need to install MozJPEG:
 brew install mozjpeg
 ```
 
+or using a nix-shell:
+
+```
+nix-shell -p mozjpeg
+```
+
 Afterwards, there will be a message telling you that mozjpeg is keg-only, which
 means it was not symlinked into /opt/homebrew. Therefore you need to execute the
 printed line below to add the mozjpeg binaries to your $PATH.
