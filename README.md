@@ -21,7 +21,7 @@ These optimizations are performed:
 3. All graphics are checked for the resolution they are used with inside the presentation. In case the image resolution is much larger than the used resolution within the presentation, the files are resized so that they still stay crisp on 4K/Retina displays, but do not waste space unnecessarily. E.g. if you add a 15 megapixel photo as a small stamp graphic inside a Keynote slide of 300 x 400 pixels, MinimizeNinja will resize the file to 600 x 800 pixels (reducing 15 MP -> 0.5 MP).
 4. Image optmization packages like MozJPEG and Oxipng are run on all images. These tools try to compress the files even more, get rid of unnecessary metadata etc. In many cases, these tools can reduce files by additional 5–40% without losing quality.
 
-## Requirements
+## Installation and Requirements
 
 ### MozJPEG
 
@@ -40,6 +40,20 @@ nix-shell -p mozjpeg
 Afterwards, there will be a message telling you that mozjpeg is keg-only, which
 means it was not symlinked into /opt/homebrew. Therefore you need to execute the
 printed line below to add the mozjpeg binaries to your $PATH.
+
+### PIP 
+Make sure you have a somehwat recent version of pip installed and create a virtual environment. Then call 
+
+```
+pip install .
+```
+
+If you're on an Apple Silicon Mac you might have to install `python-snappy` before installing this project. 
+
+```
+CPPFLAGS="-I/opt/homebrew/include -L/opt/homebrew/lib" pip install python-snappy
+```
+
 
 ## Caveats
 
